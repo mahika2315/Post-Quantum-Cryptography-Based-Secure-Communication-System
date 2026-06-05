@@ -1,43 +1,236 @@
-CipherNova 🚀
-A Post-Quantum Cryptography (PQC) Based End-to-End Secure Messaging Platform
-CipherNova (formerly KyberShield) is a zero-knowledge, end-to-end encrypted messaging and peer-to-peer WebRTC signaling application designed to mitigate the future threat of Cryptanalytically Useful Quantum Computers (CRQCs) and active "Store Now, Decrypt Later" (SNDL) attacks.
+# 🚀 CipherNova
 
-🔒 Cryptographic Suite
-CipherNova implements the latest NIST Post-Quantum Cryptography standards (released August 2024), running entirely client-side inside the sandboxed browser execution memory:
+> A Post-Quantum Cryptography (PQC) Based End-to-End Secure Messaging Platform
 
-ML-KEM-1024 (FIPS 203): Module-Lattice-Based Key-Encapsulation Mechanism (formerly Crystals-Kyber) used to perform secure post-quantum key handshakes.
-ML-DSA-87 (FIPS 204): Module-Lattice-Based Digital Signature Standard (formerly Crystals-Dilithium) used to verify user identities and prevent Man-In-The-Middle (MITM) attacks.
-AES-256-GCM / ChaCha20-Poly1305: Authenticated symmetric encryption utilizing unique 96-bit Initialization Vectors (IV) to protect chat messages and binary file transfers, ensuring complete confidentiality and integrity.
-✨ Features
-Zero-Knowledge Architecture: All key pair generations, signatures, encapsulations, and symmetric decryptions execute strictly client-side. The routing server is completely blind to private keys and message plaintexts.
-Real-Time Duplex Syncing: Utilizes Server-Sent Events (SSE) for low-overhead, real-time message routing and presence detection.
-Encrypted WebRTC Signaling: Video/audio signaling parameters (SDP and ICE Candidates) are encrypted using derived post-quantum shared secrets.
-Interactive Cryptographic Console: A built-in terminal log overlay and a global "Decryption Switch" designed to visually demonstrate the step-by-step cryptographic operations and transit security.
-🛠️ Tech Stack
-Frontend: Svelte 5 / SvelteKit (with Svelte writable/derived stores)
-Design System: Vanilla CSS with glassmorphism & dark-mode aesthetics
-Cryptographic Engines: Noble PQC libraries (@noble/post-quantum) & W3C WebCrypto API
-Backend: Node.js & SvelteKit API endpoints
-Database: High-performance, memory-resident server registry (managed via globalThis)
-🚀 Setup & Installation
-Prerequisites
-Make sure you have Node.js (v20+) installed.
+CipherNova is a zero-knowledge, end-to-end encrypted messaging application designed to mitigate the future threat of **Cryptanalytically Useful Quantum Computers (CRQCs)** and active **Store Now, Decrypt Later (SNDL)** attacks.
 
-Installation
-Clone this repository:
-bash
+---
 
-git clone https://github.com/YOUR_USERNAME/ciphernova.git
+## 🔒 Cryptographic Suite
+
+CipherNova implements the latest **NIST Post-Quantum Cryptography standards (August 2024)** and performs all cryptographic operations entirely client-side within the browser's sandboxed execution environment.
+
+### ML-KEM-1024 (FIPS 203)
+Module-Lattice-Based Key Encapsulation Mechanism (formerly **CRYSTALS-Kyber**) used for:
+
+- Secure post-quantum key exchange
+- Shared secret establishment
+- Quantum-resistant communication
+
+### ML-DSA-87 (FIPS 204)
+Module-Lattice-Based Digital Signature Algorithm (formerly **CRYSTALS-Dilithium**) used for:
+
+- Identity verification
+- Message authentication
+- Prevention of Man-In-The-Middle (MITM) attacks
+
+### AES-256-GCM / ChaCha20-Poly1305
+Authenticated symmetric encryption algorithms used to:
+
+- Protect chat messages
+- Secure binary file transfers
+- Ensure confidentiality and integrity
+- Utilize unique 96-bit Initialization Vectors (IVs)
+
+---
+
+## ✨ Features
+
+### 🔐 Zero-Knowledge Architecture
+
+- All key generation, signatures, encapsulations, and decryptions occur exclusively client-side.
+- Private keys never leave the user's device.
+- The server cannot access plaintext messages or cryptographic secrets.
+
+### ⚡ Real-Time Duplex Messaging
+
+- Utilizes Server-Sent Events (SSE) for efficient real-time communication.
+- Supports instant message delivery and user presence detection.
+- Low-overhead alternative to continuous polling.
+
+### 🎥 Encrypted WebRTC Signaling
+
+- SDP offers/answers are encrypted before transmission.
+- ICE candidates are protected using derived post-quantum shared secrets.
+- Secure audio and video session establishment.
+
+### 🖥️ Interactive Cryptographic Console
+
+Built-in developer console that visually demonstrates:
+
+- Key generation
+- ML-KEM encapsulation/decapsulation
+- ML-DSA signing and verification
+- Message encryption and decryption
+- Network transmission workflow
+
+### 🔄 Global Decryption Switch
+
+A demonstration feature allowing users to visualize:
+
+- Ciphertext in transit
+- Secure message routing
+- End-to-end decryption workflow
+- Cryptographic protection mechanisms
+
+---
+
+## 🏗️ Architecture
+
+```text
++-------------+       ML-KEM-1024       +-------------+
+|  Client A   | <---------------------> |  Client B   |
++-------------+                         +-------------+
+       |                                       |
+       |     Encrypted Messages & Files        |
+       +---------------------------------------+
+                       |
+                       v
+              +------------------+
+              | Routing Server   |
+              +------------------+
+                       |
+                       v
+              Zero Knowledge Only
+```
+
+The routing server acts solely as a transport layer and never has access to:
+
+- Private keys
+- Shared secrets
+- Plaintext messages
+- File contents
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- Svelte 5
+- SvelteKit
+- Svelte Writable Stores
+- Svelte Derived Stores
+
+### Design System
+
+- Vanilla CSS
+- Glassmorphism UI
+- Dark Mode Interface
+
+### Cryptographic Engines
+
+- @noble/post-quantum
+- WebCrypto API
+
+### Backend
+
+- Node.js
+- SvelteKit API Endpoints
+
+### Database / State Management
+
+- In-memory server registry
+- Managed using `globalThis`
+- High-speed session routing
+
+---
+
+## 🚀 Setup & Installation
+
+### Prerequisites
+
+- Node.js v20+
+- npm
+
+### Clone Repository
+
+```bash
+git clone https://github.com/mahika2315/ciphernova.git
 cd ciphernova
-Install dependencies:
-bash
+```
 
+### Install Dependencies
+
+```bash
 npm install
-Start the local development server:
-bash
+```
 
+### Start Development Server
+
+```bash
 npm run dev
-Open the application in your browser:
-http://localhost:5173
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+```
+
+### Open Application
+
+```text
+http://localhost:5173/demo
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+ciphernova/
+│
+├── src/
+│   ├── routes/
+│   ├── lib/
+│   ├── stores/
+│   ├── crypto/
+│   └── components/
+│
+├── static/
+├── package.json
+├── svelte.config.js
+├── vite.config.js
+└── README.md
+```
+
+---
+
+## 🛡️ Security Objectives
+
+CipherNova is designed to provide:
+
+- Quantum-resistant key exchange
+- Quantum-resistant digital signatures
+- End-to-end encrypted messaging
+- End-to-end encrypted file transfer
+- Secure WebRTC signaling
+- Zero-knowledge infrastructure
+- Protection against Store-Now-Decrypt-Later attacks
+- Strong confidentiality and integrity guarantees
+
+---
+
+## 🔬 Educational Purpose
+
+CipherNova includes visual cryptographic demonstrations for:
+
+- Post-Quantum Cryptography education
+- Cybersecurity research
+- Secure communication studies
+- Understanding modern cryptographic workflows
+
+---
+
+## 📈 Future Roadmap
+
+- Group messaging
+- Multi-device synchronization
+- QR-based contact verification
+- Hybrid classical + PQC mode
+- Secure encrypted backups
+- Mobile applications
+- Federated server architecture
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+See the `LICENSE` file for more information.
