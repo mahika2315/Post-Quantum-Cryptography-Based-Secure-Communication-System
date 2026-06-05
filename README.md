@@ -146,8 +146,8 @@ The routing server acts solely as a transport layer and never has access to:
 ### Clone Repository
 
 ```bash
-git clone https://github.com/mahika2315/ciphernova.git
-cd ciphernova
+git clone https://github.com/mahika2315/Post-Quantum-Cryptography-Based-Secure-Communication-System.git
+cd Post-Quantum-Cryptography-Based-Secure-Communication-System
 ```
 
 ### Install Dependencies
